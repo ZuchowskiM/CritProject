@@ -20,10 +20,8 @@ namespace CritProject.Models
 
         public string Descritpion { set; get; }
 
-        public double Appreciation { set; get; }
+        public virtual ICollection<ReviewModels> Reviews { get; set; }
 
-       // public virtual ICollection<ReviewModels> Reviews { get; set; }
-
-      //  public virtual ICollection<CommentModels> Comments { get; set; }
+        public virtual ICollection<CommentModels> Comments { get; set; }
     }
 }

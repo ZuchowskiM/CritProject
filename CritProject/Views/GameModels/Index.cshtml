@@ -7,6 +7,16 @@
 
 <h2>Index</h2>
 
+@using (Html.BeginForm())
+{
+    <p>
+        Type: @Html.TextBox("searchString")
+
+        <input type="submit" value="Search"/>
+    </p>
+}
+
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -22,16 +32,10 @@
             @Html.DisplayNameFor(model => model.Type)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsMultiplayer)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Picture)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AvrRating)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Platforms)
@@ -39,38 +43,33 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RealeaseDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Type)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsMultiplayer)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Picture)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AvrRating)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Platforms)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RealeaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Picture)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Platforms)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>

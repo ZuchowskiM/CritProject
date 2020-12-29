@@ -16,7 +16,7 @@ namespace CritProject.Models
         public string Title { get; set; }
 
 
-       public int ProducerID { get; set; }
+        public int ProducerID { get; set; }
 
 
         public DateTime RealeaseDate { get; set; }
@@ -24,24 +24,17 @@ namespace CritProject.Models
 
         public string Type { get; set; }
 
-
-        public bool IsMultiplayer { get; set; }
-
-
         public string Description { get; set; }
-
 
         public string Picture { get; set; }
 
-
-        public double AvrRating { get; set; }
-
+        //public double AvrRating { get; set; }
 
         public string Platforms { get; set; }
 
-       // public virtual ICollection<ReviewModels> Reviews { get; set; }
+       public virtual ICollection<ReviewModels> Reviews { get; set; }
 
-       // public virtual ProducerModels Producer { set; get; }
+       public virtual ProducerModels Producer { get; set; }
 
       
 

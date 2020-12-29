@@ -16,9 +16,21 @@ namespace CritProject.Controllers
         private CritContext db = new CritContext();
 
         // GET: GameModels
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            var games = db.Games;//.Include(g => g.Producer);
+
+            //ViewBag.type = new SelectList(db.Type, "Name", "Name");
+            //var games = db.Games.Include(s => s.Type);//.Include(g => g.Producer);
+            //ViewBag.Type = new SelectList(db.Games, "Type", "Type");
+
+            var games = from g in db.Games select g;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                games = games.Where(s => s.Type.Contains(searchString));
+            }
+
+            
             return View(games.ToList());
         }
 

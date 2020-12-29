@@ -26,11 +26,19 @@ namespace CritProject.DAL
 
         public DbSet<ProducerModels> Producers { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+        public DbSet<TypeModels> Type { get; set; }
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+
+           // modelBuilder.Entity<TypeModels>()
+               //.HasMany(s => s.Games)
+               //.WithRequired(m => m.Type)
+              // .HasForeignKey(f => f.ID);
+
+           // modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+          //  modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         
-        }
+       // }
     }
 }

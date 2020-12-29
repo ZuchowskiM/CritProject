@@ -18,8 +18,8 @@ namespace CritProject.Models
 
         public DateTime CommentDate { set; get; }
 
-        //public virtual CriticModels Critic { set; get; }
+        public virtual CriticModels Critic { set; get; }
 
-        //public virtual ReviewModels Review { set; get; }
+        public virtual ReviewModels Review { set; get; }
     }
 }

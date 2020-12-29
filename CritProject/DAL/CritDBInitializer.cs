@@ -18,10 +18,9 @@ namespace CritProject.DAL
                 RealeaseDate = new DateTime(2009, 10, 10),
                 Type = "MOBA",
                 Platforms = "PC",
-                IsMultiplayer = true,
                 Description = "nice game",
                 //Reviews = new List<ReviewModels> { new Models.ReviewModels() {ID = 1 } },
-                //Producer = new ProducerModels() { ID = 1, CompanyName = "Riot Games"}
+                Producer = new ProducerModels() { ID = 1, CompanyName = "Riot Games", HQPlace="USA"}
                 
             };
 

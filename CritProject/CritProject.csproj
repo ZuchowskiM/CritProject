@@ -189,6 +189,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProducerModels.cs" />
     <Compile Include="Models\ReviewModels.cs" />
+    <Compile Include="Models\TypeModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

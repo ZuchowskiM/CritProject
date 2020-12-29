@@ -14,6 +14,8 @@ namespace CritProject.Models
 
         public DateTime PublishDate { set; get; }
 
+        public String ReviewText { set; get; }
+
         public int CriticID { set; get; }
 
         public int GameID { set; get; }
@@ -22,12 +24,11 @@ namespace CritProject.Models
 
         public double Rating { set; get; }
 
-       // public virtual GameModels Game { set; get; }
+        public virtual GameModels Game { set; get; }
 
-        //public virtual CriticModels Critic { set; get; }
+        public virtual CriticModels Critic { set; get; }
 
-       // public virtual ICollection<CommentModels> Comments { get; set; }
+        public virtual ICollection<CommentModels> Comments { get; set; }
 
-       // public virtual ProducerModels Producer { set; get; }
     }
 }
