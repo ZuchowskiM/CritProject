@@ -20,8 +20,6 @@ namespace CritProject.Models
 
         public int GameID { set; get; }
 
-        public int ProducerID { set; get; }
-
         public double Rating { set; get; }
 
         public virtual GameModels Game { set; get; }

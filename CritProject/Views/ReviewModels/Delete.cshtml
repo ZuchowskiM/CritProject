@@ -13,6 +13,22 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Critic.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Critic.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Game.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Game.Title)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.ReviewTitle)
         </dt>
 
@@ -29,27 +45,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CriticID)
+            @Html.DisplayNameFor(model => model.ReviewText)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CriticID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GameID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GameID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ProducerID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProducerID)
+            @Html.DisplayFor(model => model.ReviewText)
         </dd>
 
         <dt>

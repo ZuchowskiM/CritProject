@@ -23,6 +23,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Picture)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
@@ -32,10 +35,7 @@
             @Html.DisplayNameFor(model => model.Type)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Picture)
+            @Html.DisplayNameFor(model => model.Producer.CompanyName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Platforms)
@@ -47,6 +47,9 @@
     {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Picture)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
@@ -56,10 +59,7 @@
                 @Html.DisplayFor(modelItem => item.Type)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Picture)
+                @Html.DisplayFor(modelItem => item.Producer.CompanyName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Platforms)

@@ -223,7 +223,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
@@ -269,6 +268,7 @@
     <Content Include="Views\ProducerModels\Details.cshtml" />
     <Content Include="Views\ProducerModels\Edit.cshtml" />
     <Content Include="Views\ProducerModels\Index.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\ReviewModels\Create.cshtml" />
     <Content Include="Views\ReviewModels\Delete.cshtml" />
     <Content Include="Views\ReviewModels\Details.cshtml" />

@@ -13,19 +13,19 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Critic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Game.Title)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.ReviewTitle)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PublishDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CriticID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GameID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProducerID)
+            @Html.DisplayNameFor(model => model.ReviewText)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Rating)
@@ -36,19 +36,19 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.Critic.Alias)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Game.Title)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.ReviewTitle)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PublishDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CriticID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GameID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProducerID)
+            @Html.DisplayFor(modelItem => item.ReviewText)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Rating)
