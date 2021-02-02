@@ -59,6 +59,23 @@ namespace CritProject.Controllers
             return View(commentModels);
         }
 
+
+        public ActionResult CreateFromReview([Bind(Include = "ID,ReviewID,Text,OwnerName,CommentDate")] CommentModels commentModels)
+        {
+            DateTime dateTime = DateTime.UtcNow.Date;
+            commentModels.CommentDate = dateTime;
+            commentModels.ReviewID = 1;
+
+            if (ModelState.IsValid)
+            {
+                db.Comments.Add(commentModels);
+                db.SaveChanges();
+                return RedirectToAction("Index", "ReviewModels", new { area = "" });
+            }
+
+            return View(commentModels);
+        }
+
         // GET: CommentModels/Edit/5
         public ActionResult Edit(int? id)
         {

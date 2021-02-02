@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -23,11 +24,48 @@ namespace CritProject.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            Database.SetInitializer(new IdentityDBInizializer<ApplicationDbContext>());
         }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+    }
+
+    public class IdentityDBInizializer<T> : CreateDatabaseIfNotExists<ApplicationDbContext>
+    {
+        protected override void Seed(ApplicationDbContext context)
+        {
+
+
+            context.Roles.Add(new IdentityRole { Name = "critic" });
+            context.Roles.Add(new IdentityRole { Name = "admin" });
+            context.Roles.Add(new IdentityRole { Name = "user" });
+            context.SaveChanges();
+
+
+
+
+
+            var store = new UserStore<ApplicationUser>(context);
+
+            var critic = new UserManager<ApplicationUser>(store);
+
+            var user = new ApplicationUser { UserName = "admin@admin.pl" };
+
+            critic.Create(user, "somePassword");
+
+
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            var role = context.Roles.SingleOrDefault(m => m.Name == "admin");
+
+            ApplicationUser user2 = userManager.FindByName("admin@admin.pl");
+
+            userManager.AddToRole(user2.Id, role.Name);
+
+        }
+
     }
 }

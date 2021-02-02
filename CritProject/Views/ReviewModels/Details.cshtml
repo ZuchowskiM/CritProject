@@ -1,4 +1,26 @@
-﻿@model CritProject.Models.ReviewModels
+﻿@{
+    var result = "";
+    Array userData = null;
+    char[] delimiterChar = { ',' };
+    var dataFile = Server.MapPath("~/App_Data/rev0001.txt");
+
+    if (File.Exists(dataFile))
+    {
+        userData = File.ReadAllLines(dataFile);
+        if (userData == null)
+        {
+            // Empty file.
+            result = "The file is empty.";
+        }
+    }
+    else
+    {
+        // File does not exist.
+        result = "The file does not exist.";
+    }
+}
+
+@model CritProject.Models.ReviewModels
 
 @{
     ViewBag.Title = "Details";
@@ -59,9 +81,88 @@
             @Html.DisplayFor(model => model.Rating)
         </dd>
 
+        <dd>
+            @{
+                StreamReader sr = File.OpenText(Server.MapPath("~/App_Data/" + Model.ReviewText.ToString()));
+                string strContents = sr.ReadToEnd();
+                //To display normal raw contents
+                //Response.Write(strContents);
+
+                //To handle Carriage returns
+                //Response.Write(strContents.Replace("\n", "<br>"));
+
+                sr.Close();
+            }
+            @Html.Raw(strContents.Replace("\r\n", "<br />"))
+        </dd>
+
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+<div>
+    <h2>Comment section</h2>
+    <table class="table table-bordered text-center">
+        <thead>
+            <tr class="text-center d-flex">
+                <th class="text-center col-lg-6">
+                    Comment
+                </th>
+                <th class="text-center">
+                    Author Name
+                </th>
+                <th class="text-center">
+                    Date
+                </th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model.Comments)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Text)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.OwnerName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.CommentDate)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<form>
+    <div class="form-group">
+        <label for="addComment">Add a comment!</label>
+        <textarea class="form-control" id="addComment" rows="3"></textarea>
+
+
+
+
+        @Html.ActionLink("Add a comment", "CreateFromReview", "CommentModels")
+    </div>
+</form>
+
+<form action="~/CommentModels/CreateFromReview" Method="POST" class="form-group">
+    <input type="hidden" name="ReviewID" id="ReviewID" value=@Model.ID />
+    <input type="hidden" name="OwnerName" id="OwnerName" value="Guest" />
+    <div class="row row-no-gutters">
+        <div class="col-md-3">
+            <input class="form-control" type="text" name="Text" id="Text" value="write a comment" />
+        </div>
+
+        <div class="col-md-1">
+            <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+    </div>
+    
+    
+</form>
+
