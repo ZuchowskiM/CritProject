@@ -66,19 +66,33 @@ namespace CritProject.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Adres e-mail")]
+        [Display(Name = "E-mail address")]
         public string Email { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "{0} musi zawierać co najmniej następującą liczbę znaków: {2}.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Hasło")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Potwierdź hasło")]
+        [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "Hasło i jego potwierdzenie są niezgodne.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Second Name")]
+        public string SecondName { get; set; }
+
+        [Required]
+        public string Alias { get; set; }
+
+        [Required]
+        [StringLength(30)]
+        public string Description { get; set; }
     }
 
     public class ResetPasswordViewModel

@@ -5,26 +5,44 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h1>@Html.DisplayFor(model => model.Title)</h1>
 
 <div>
-    <h4>GameModels</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
+
+
+    @*<dt>
+            @Html.DisplayNameFor(model => model.Picture)
+        </dt>*@
+
+    <div class="row">
+        <div class="col-3">
+            <img src="@Url.Content(Model.Picture)" width="250" height="350" />
+        </div>
+        
+    
+        
+    
+
+    @*<dt>
             @Html.DisplayNameFor(model => model.Title)
-        </dt>
+        </dt>*@
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
+    @*<h2>
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+        </h2>*@
+    <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.RealeaseDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.RealeaseDate)
+            @{
+                var str = Model.RealeaseDate.ToString().Substring(0, 10);
+                @Html.Raw(str);
+            }
         </dd>
 
         <dt>
@@ -44,14 +62,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Picture)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Picture)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Platforms)
         </dt>
 
@@ -60,6 +70,8 @@
         </dd>
 
     </dl>
+</div>
+    
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |

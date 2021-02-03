@@ -62,9 +62,8 @@ namespace CritProject.Controllers
 
         public ActionResult CreateFromReview([Bind(Include = "ID,ReviewID,Text,OwnerName,CommentDate")] CommentModels commentModels)
         {
-            DateTime dateTime = DateTime.UtcNow.Date;
+            DateTime dateTime = DateTime.Now;
             commentModels.CommentDate = dateTime;
-            commentModels.ReviewID = 1;
 
             if (ModelState.IsValid)
             {

@@ -1,24 +1,24 @@
-﻿@{
-    var result = "";
-    Array userData = null;
-    char[] delimiterChar = { ',' };
-    var dataFile = Server.MapPath("~/App_Data/rev0001.txt");
+﻿@*@{
+        var result = "";
+        Array userData = null;
+        char[] delimiterChar = { ',' };
+        var dataFile = Server.MapPath("~/App_Data/rev0001.txt");
 
-    if (File.Exists(dataFile))
-    {
-        userData = File.ReadAllLines(dataFile);
-        if (userData == null)
+        if (File.Exists(dataFile))
         {
-            // Empty file.
-            result = "The file is empty.";
+            userData = File.ReadAllLines(dataFile);
+            if (userData == null)
+            {
+                // Empty file.
+                result = "The file is empty.";
+            }
         }
-    }
-    else
-    {
-        // File does not exist.
-        result = "The file does not exist.";
-    }
-}
+        else
+        {
+            // File does not exist.
+            result = "The file does not exist.";
+        }
+    }*@
 
 @model CritProject.Models.ReviewModels
 
@@ -27,77 +27,120 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>ReviewModels</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Critic)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Critic.Alias)
-        </dd>
+<div class="container">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Game.Title)
-        </dt>
+    <h1 class="text-center">@Html.DisplayFor(model => model.ReviewTitle)</h1>
+    <br />
 
-        <dd>
-            @Html.DisplayFor(model => model.Game.Title)
-        </dd>
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <img src="@Url.Content(Model.Game.Picture)"
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ReviewTitle)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ReviewTitle)
-        </dd>
+    <div class="col-6">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Critic)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PublishDate)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Critic.Alias)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PublishDate)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ReviewText)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ReviewText)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Game.Title)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Rating)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Game.Title)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Rating)
-        </dd>
+            @*<dt>
+                    @Html.DisplayNameFor(model => model.ReviewTitle)
+                </dt>
 
-        <dd>
-            @{
-                StreamReader sr = File.OpenText(Server.MapPath("~/App_Data/" + Model.ReviewText.ToString()));
-                string strContents = sr.ReadToEnd();
-                //To display normal raw contents
-                //Response.Write(strContents);
+                <dd>
+                    @Html.DisplayFor(model => model.ReviewTitle)
+                </dd>*@
 
-                //To handle Carriage returns
-                //Response.Write(strContents.Replace("\n", "<br>"));
+            <dt>
+                @Html.DisplayNameFor(model => model.PublishDate)
+            </dt>
 
-                sr.Close();
-            }
-            @Html.Raw(strContents.Replace("\r\n", "<br />"))
-        </dd>
+            <dd>
+                @{
+                    var str = Model.PublishDate.ToString().Substring(0, 10);
+                    <p>@str</p>
+                } 
+            </dd>
 
-    </dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.Rating)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Rating)/10
+            </dd>
+
+            @*<dt>
+                    @Html.DisplayNameFor(model => model.ReviewText)
+                </dt>*@
+
+            @*<dd>
+                    @Html.DisplayFor(model => model.ReviewText).ToString()
+                </dd>*@
+
+            @*<dd class="center-block">
+                    @{
+                        //StreamReader sr1 = File.OpenText(Server.MapPath("~/App_Data/" + Model.ReviewText.ToString()));
+                        var sr = Model.ReviewText.ToString();
+                        //string strContents = sr.ReadToEnd();
+                        //To display normal raw contents
+                        //Response.Write(strContents);
+
+                        //To handle Carriage returns
+                        //Response.Write(strContents.Replace("\n", "<br>"));
+
+                        //sr.Close();
+
+                    }
+                    @Html.Raw(sr.Replace("\r\n", "<br />"))
+                </dd>*@
+
+        </dl>
+    </div>
+
+
+
 </div>
+<br />
+<br />
+<div class="container text-center border">
+    @{
+        //StreamReader sr1 = File.OpenText(Server.MapPath("~/App_Data/" + Model.ReviewText.ToString()));
+        var sr1 = Model.ReviewText.ToString();
+        //string strContents = sr.ReadToEnd();
+        //To display normal raw contents
+        //Response.Write(strContents);
+
+        //To handle Carriage returns
+        //Response.Write(strContents.Replace("\n", "<br>"));
+
+        //sr.Close();
+
+    }
+    @Html.Raw(sr1.Replace("\r\n", "<br />"))
+</div>
+<br />
+<br />
+
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
@@ -106,14 +149,14 @@
     <h2>Comment section</h2>
     <table class="table table-bordered text-center">
         <thead>
-            <tr class="text-center d-flex">
-                <th class="text-center col-lg-6">
+            <tr class="text-center col-md-7">
+                <th class="text-center">
                     Comment
                 </th>
-                <th class="text-center">
+                <th class="text-center col-md-2">
                     Author Name
                 </th>
-                <th class="text-center">
+                <th class="text-center col-md-3">
                     Date
                 </th>
             </tr>
@@ -138,17 +181,17 @@
     </table>
 </div>
 
-<form>
-    <div class="form-group">
-        <label for="addComment">Add a comment!</label>
-        <textarea class="form-control" id="addComment" rows="3"></textarea>
+@*<form>
+        <div class="form-group">
+            <label for="addComment">Add a comment!</label>
+            <textarea class="form-control" id="addComment" rows="3"></textarea>
 
 
 
 
-        @Html.ActionLink("Add a comment", "CreateFromReview", "CommentModels")
-    </div>
-</form>
+            @Html.ActionLink("Add a comment", "CreateFromReview", "CommentModels")
+        </div>
+    </form>*@
 
 <form action="~/CommentModels/CreateFromReview" Method="POST" class="form-group">
     <input type="hidden" name="ReviewID" id="ReviewID" value=@Model.ID />
@@ -162,7 +205,7 @@
             <button type="submit" class="btn btn-primary">Add</button>
         </div>
     </div>
-    
-    
+
+
 </form>
 

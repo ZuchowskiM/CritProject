@@ -38,6 +38,7 @@ namespace CritProject.Controllers
         }
 
         // GET: ReviewModels1/Create
+        [Authorize(Roles = "critic")]
         public ActionResult Create()
         {
             ViewBag.CriticID = new SelectList(db.Critics, "ID", "Name");

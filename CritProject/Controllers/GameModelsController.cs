@@ -50,6 +50,7 @@ namespace CritProject.Controllers
         }
 
         // GET: GameModels/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             ViewBag.ProducerID = new SelectList(db.Producers, "ID", "CompanyName");

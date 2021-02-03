@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CritProject.Models;
+using CritProject.DAL;
 
 namespace CritProject.Controllers
 {
@@ -153,10 +154,24 @@ namespace CritProject.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+
+                //var role = Roles.SingleOrDefault(m => m.Name == "admin");
+
+                
+
                 if (result.Succeeded)
                 {
+                    ApplicationUser user2 = UserManager.FindByName(model.Email);
+
+                    UserManager.AddToRole(user2.Id, "critic");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
+                    CritContext db = new CritContext();
+
+                    var critic = new CriticModels() { Name = model.Name, SecondName = model.SecondName, Alias = model.Alias, Descritpion = model.Description };
+                    db.Critics.Add(critic);
+                    db.SaveChanges();
+
                     // Aby uzyskać więcej informacji o sposobie włączania potwierdzania konta i resetowaniu hasła, odwiedź stronę https://go.microsoft.com/fwlink/?LinkID=320771
                     // Wyślij wiadomość e-mail z tym łączem
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

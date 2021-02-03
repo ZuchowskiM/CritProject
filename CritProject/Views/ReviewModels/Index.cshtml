@@ -5,60 +5,87 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Reviews</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Critic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game.Picture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReviewTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PublishDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Critic)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Game.Picture)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Game)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ReviewTitle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PublishDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rating)
-        </th>
-        <th></th>
+        <td>
+            @Html.DisplayFor(modelItem => item.Critic.Alias)
+        </td>
+        <td>
+            <img src="@Url.Content(item.Game.Picture)" width="50" height="70" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Game.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReviewTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PublishDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rating)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
     </tr>
+    }
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Critic.Alias)
-    </td>
-    <td>
-        <img src="@Url.Content(item.Game.Picture)" width="50" height="70" />
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Game.Title)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ReviewTitle)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.PublishDate)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Rating)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-    </td>
-</tr>
-}
+    </table>*@
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3" style="padding-bottom: 10px; padding-top: 10px">
+            <div class="card text-center" style="width: 18rem; padding: 5px">
+                <img class="card-img-top" src="@Url.Content(item.Game.Picture)" alt="Card image cap" width="100%" height="100%">
+                <div class="card-body">
+                    <h3 class="card-title">@item.ReviewTitle</h3>
+                    <p class="card-text">Critic: @item.Critic.Alias</p>
+                    <p class="card-text">Rating: @item.Rating/10</p>
+                    <p class="card-text">
+                        @{
+                            //item.PublishDate;
+                            var str = item.PublishDate.ToString().Substring(0, 10);
+                            @str
+                        }
+                    </p>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </div>
+            </div>
+        </div>
+        
+    }
+</div>
 
-</table>
