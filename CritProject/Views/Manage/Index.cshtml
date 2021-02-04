@@ -1,33 +1,33 @@
 ﻿@model CritProject.Models.IndexViewModel
 @{
-    ViewBag.Title = "Zarządzaj";
+    ViewBag.Title = "Manage your account";
 }
 
 <h2>@ViewBag.Title.</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
-    <h4>Zmień ustawienia konta</h4>
+    <h4>Change account Settings</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>Hasło:</dt>
+        <dt>Password:</dt>
         <dd>
             [
             @if (Model.HasPassword)
             {
-                @Html.ActionLink("Zmień hasło", "ChangePassword")
+                @Html.ActionLink("Change password", "ChangePassword")
             }
             else
             {
-                @Html.ActionLink("Utwórz", "SetPassword")
+                @Html.ActionLink("Set password", "SetPassword")
             }
             ]
         </dd>
-        <dt>Logowania zewnętrzne:</dt>
+        @*<dt>Logowania zewnętrzne:</dt>
         <dd>
             @Model.Logins.Count [
-            @Html.ActionLink("Zarządzaj", "ManageLogins") ]
-        </dd>
+            @Html.ActionLink("Manage", "ManageLogins") ]
+        </dd>*@
         @*
             Numery telefonów mogą być używane jako drugi składnik w systemach uwierzytelniania dwuskładnikowego.
              
@@ -56,12 +56,12 @@
                 }
             </dd>
         *@
-        <dt>Uwierzytelnianie dwuetapowe:</dt>
+        @*<dt>Uwierzytelnianie dwuetapowe:</dt>
         <dd>
             <p>
                 Nie skonfigurowano żadnych dostawców uwierzytelniania dwuskładnikowego. Zobacz <a href="https://go.microsoft.com/fwlink/?LinkId=403804">ten artykuł</a>,
                 aby uzyskać szczegółowe informacje na temat konfigurowania tej aplikacji ASP.NET pod kątem obsługi uwierzytelniania dwuskładnikowego.
-            </p>
+            </p>*@
             @*@if (Model.TwoFactor)
                 {
                     using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))

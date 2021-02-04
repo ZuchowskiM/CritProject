@@ -73,7 +73,15 @@
 </div>
     
 </div>
+<br />
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    <button class="btn btn-info">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, htmlAttributes: new { @class = "card-link", @style = "color: white" })
+    </button>
+
+    <button class="btn btn-dark">
+        @Html.ActionLink("Back to List", "Index", routeValues: null, htmlAttributes: new { @class = "card-link", @style = "color: white" })
+    </button>
+    
+   
 </p>

@@ -25,4 +25,23 @@ select {
 textarea {
     max-width: 100%;
     width: 100%;
+    height:500px;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.backgroud-body {
+    background-color: #ffffff;
+    background-image: url("https://www.transparenttextures.com/patterns/inspiration-geometry.png");
+}
+
+account-icon-link {
+    background: url(../logos/account.png);
+    display: block;
+    text-indent: -9999px; /* hides the link text */
 }

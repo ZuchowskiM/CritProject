@@ -8,6 +8,10 @@ using System.Web;
 using System.Web.Mvc;
 using CritProject.DAL;
 using CritProject.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using CritProject.Controllers;
 
 namespace CritProject.Controllers
 {
@@ -53,6 +57,15 @@ namespace CritProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,ReviewTitle,PublishDate,ReviewText,CriticID,GameID,Rating")] ReviewModels reviewModels)
         {
+            reviewModels.PublishDate = DateTime.Now;
+
+            string userID = User.Identity.GetUserId();
+
+            var critic = db.Critics.Where(c => c.SecondName.Equals(userID));
+            
+
+            reviewModels.CriticID = critic.FirstOrDefault().ID;
+
             if (ModelState.IsValid)
             {
                 db.Reviews.Add(reviewModels);
@@ -66,6 +79,7 @@ namespace CritProject.Controllers
         }
 
         // GET: ReviewModels1/Edit/5
+        [Authorize(Roles = "critic")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -89,6 +103,8 @@ namespace CritProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,ReviewTitle,PublishDate,ReviewText,CriticID,GameID,Rating")] ReviewModels reviewModels)
         {
+            reviewModels.PublishDate = DateTime.Now;
+            
             if (ModelState.IsValid)
             {
                 db.Entry(reviewModels).State = EntityState.Modified;
@@ -101,6 +117,7 @@ namespace CritProject.Controllers
         }
 
         // GET: ReviewModels1/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

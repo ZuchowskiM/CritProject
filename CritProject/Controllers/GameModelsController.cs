@@ -64,6 +64,10 @@ namespace CritProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Title,ProducerID,RealeaseDate,Type,IsMultiplayer,Description,Picture,AvrRating,Platforms")] GameModels gameModels)
         {
+            string path = "/gameImages/";
+
+            gameModels.Picture = path + gameModels.Picture.ToString();
+
             if (ModelState.IsValid)
             {
                 db.Games.Add(gameModels);
@@ -76,6 +80,7 @@ namespace CritProject.Controllers
         }
 
         // GET: GameModels/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -98,6 +103,10 @@ namespace CritProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Title,ProducerID,RealeaseDate,Type,IsMultiplayer,Description,Picture,AvrRating,Platforms")] GameModels gameModels)
         {
+            string path = "/gameImages/";
+
+            gameModels.Picture = path + gameModels.Picture.ToString();
+
             if (ModelState.IsValid)
             {
                 db.Entry(gameModels).State = EntityState.Modified;

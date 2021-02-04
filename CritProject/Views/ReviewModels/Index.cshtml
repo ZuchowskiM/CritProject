@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<CritProject.Models.ReviewModels>
+@using Microsoft.AspNet.Identity;
 
 @{
     ViewBag.Title = "Index";
@@ -8,7 +9,15 @@
 <h2>Reviews</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("critic"))
+        {
+            <button class="btn btn-info">
+                @Html.ActionLink("Create New", "Create", routeValues: null, htmlAttributes: new { @class = "card-link", @style = "color: white" })
+            </button>
+        }
+    }
 </p>
 @*<table class="table">
         <tr>
@@ -67,7 +76,7 @@
     {
         <div class="col-md-3" style="padding-bottom: 10px; padding-top: 10px">
             <div class="card text-center" style="width: 18rem; padding: 5px">
-                <img class="card-img-top" src="@Url.Content(item.Game.Picture)" alt="Card image cap" width="100%" height="100%">
+                <img class="card-img-top" src="@Url.Content(item.Game.Picture)" alt="Card image cap" width="280px" height="360px">
                 <div class="card-body">
                     <h3 class="card-title">@item.ReviewTitle</h3>
                     <p class="card-text">Critic: @item.Critic.Alias</p>
@@ -79,9 +88,27 @@
                             @str
                         }
                     </p>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("critic") && item.Critic.SecondName == User.Identity.GetUserId())
+                        {
+                            <button class="btn btn-info">
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "card-link", @style = "color: white" })
+                            </button>
+                        }
+                    }
+                    <button class="btn btn-success" >
+                        @Html.ActionLink("Show", "Details", new { id = item.ID }, htmlAttributes: new { @class = "card-link", @style = "color: white" })
+                    </button>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("admin"))
+                        {
+                            <button class="btn btn-danger">
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "card-link", @style = "color: white" })
+                            </button>
+                        }
+                    }
                 </div>
             </div>
         </div>

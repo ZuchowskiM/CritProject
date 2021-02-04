@@ -18,7 +18,7 @@ namespace CritProject.Models
 
         public int ProducerID { get; set; }
 
-
+        [Display(Name = "Realease Date")]
         public DateTime RealeaseDate { get; set; }
 
 

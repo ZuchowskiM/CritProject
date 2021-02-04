@@ -12,6 +12,7 @@ namespace CritProject.Models
 
         public string Name { set; get; }
 
+        [Display(Name = "User ID")]
         public string SecondName { set; get; }
 
         public string Alias { set; get; }

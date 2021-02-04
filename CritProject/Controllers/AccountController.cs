@@ -168,7 +168,7 @@ namespace CritProject.Controllers
 
                     CritContext db = new CritContext();
 
-                    var critic = new CriticModels() { Name = model.Name, SecondName = model.SecondName, Alias = model.Alias, Descritpion = model.Description };
+                    var critic = new CriticModels() { Name = model.Name, SecondName = user2.Id, Alias = model.Alias, Descritpion = model.Description };
                     db.Critics.Add(critic);
                     db.SaveChanges();
 
