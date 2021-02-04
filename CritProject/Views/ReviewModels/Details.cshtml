@@ -208,10 +208,16 @@
 
 <form action="~/CommentModels/CreateFromReview" Method="POST" class="form-group">
     <input type="hidden" name="ReviewID" id="ReviewID" value=@Model.ID />
-    <input type="hidden" name="OwnerName" id="OwnerName" value="Guest" />
+    @*<input type="hidden" name="OwnerName" id="OwnerName" value="Guest" />*@
+    <input type="hidden" name="Critic" id="Critic" value="@Model.Critic" />
+
     <div class="row row-no-gutters">
         <div class="col-md-3">
-            <input class="form-control" type="text" name="Text" id="Text" value="write a comment" />
+            <input class="form-control" type="text" name="Text" id="Text" placeholder="write a comment" required />
+        </div>
+
+        <div class="col-md-2">
+            <input class="form-control" type="text" name="OwnerName" id="OwnerName" placeholder="Your name"  required/>
         </div>
 
         <div class="col-md-1">

@@ -87,7 +87,7 @@ namespace CritProject.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Nieprawidłowa próba logowania.");
+                    ModelState.AddModelError("", "Data are not valid, Sorry.");
                     return View(model);
             }
         }

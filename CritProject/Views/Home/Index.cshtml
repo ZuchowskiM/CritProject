@@ -108,18 +108,18 @@
             <div class="card">
                 <div class="card-body">
                     <h2 class="card-title">Games</h2>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p class="card-text">Check if your favourite game is present in database.</p>
                     <button class="btn btn-default">@Html.ActionLink("List of Games", "Index", "GameModels")</button>
                 </div>
-            </div> 
+            </div>
         </div>
 
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="card-title">Producers</h2>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <button class="btn btn-default">@Html.ActionLink("List of Producers", "Index", "ProducerModels")</button>
+                    <h2 class="card-title">Have fun</h2>
+                    <p class="card-text">We wish you a good time, maybe you will write something on your own?</p>
+                    <button class="btn btn-default">@Html.ActionLink("Write a review", "Create", "ReviewModels")</button>
                 </div>
             </div>
         </div>
@@ -128,14 +128,14 @@
             <div class="card">
                 <div class="card-body">
                     <h2 class="card-title">Reviews</h2>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p class="card-text">Check the newest content, written by community</p>
                     <button class="btn btn-default">@Html.ActionLink("List of Reviews", "Index", "ReviewModels")</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="row" style="height: 200px; text-align: center">
+    @*<div class="row" style="height: 200px; text-align: center">
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
@@ -159,11 +159,50 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="card-title">Have fun</h2>
+                    <h2 class="card-title">Producers</h2>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <button class="btn btn-default">@Html.ActionLink("List of Comments", "Index", "CommentModels")</button>
+                    <button class="btn btn-default">@Html.ActionLink("List of Producers", "Index", "ProducerModels")</button>
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("admin"))
+        {
+
+            <div class="row" style="height: 200px; text-align: center">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title">Critics</h2>
+                            <p class="card-text">Access to critics database</p>
+                            <button class="btn btn-default">@Html.ActionLink("List of Critics", "Index", "CriticModels")</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title">Comments</h2>
+                            <p class="card-text">Access to comments of users</p>
+                            <button class="btn btn-default">@Html.ActionLink("List of Comments", "Index", "CommentModels")</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title">Producers</h2>
+                            <p class="card-text">Access to producer database</p>
+                            <button class="btn btn-default">@Html.ActionLink("List of Producers", "Index", "ProducerModels")</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
 </div>

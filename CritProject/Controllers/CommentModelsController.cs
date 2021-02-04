@@ -72,7 +72,8 @@ namespace CritProject.Controllers
                 return RedirectToAction("Index", "ReviewModels", new { area = "" });
             }
 
-            return View(commentModels);
+            //return View(commentModels);
+            return RedirectToAction("Index", "ReviewModels", new { area = "" });
         }
 
         // GET: CommentModels/Edit/5

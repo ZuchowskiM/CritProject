@@ -202,12 +202,16 @@
     <Content Include="Content\bootstrap-ubuntu.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="gameImages\batmanAK.jpg" />
+    <Content Include="gameImages\cyberpunk2077.jpg" />
+    <Content Include="gameImages\godOfWar.jpg" />
     <Content Include="gameImages\leagueOfLegends.jpg" />
     <Content Include="App_Data\rev0001.txt" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="gameImages\starWars.jpg" />
     <Content Include="gameImages\valorant.png" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

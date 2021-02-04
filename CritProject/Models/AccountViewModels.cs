@@ -6,7 +6,7 @@ namespace CritProject.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
-        [Display(Name = "Adres e-mail")]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
     }
 
@@ -48,12 +48,12 @@ namespace CritProject.Models
 
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Please enter E-mail.")]
         [Display(Name = "Email")]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter password.")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -64,33 +64,32 @@ namespace CritProject.Models
 
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Field email is required.")]
         [EmailAddress]
         [Display(Name = "E-mail address")]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "{0} musi zawierać co najmniej następującą liczbę znaków: {2}.", MinimumLength = 6)]
+        [Required(ErrorMessage = "Field pasword is required.")]
+        [StringLength(100, ErrorMessage = "{0} must have at least chars: {2}.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm Password")]
-        [Compare("Password", ErrorMessage = "Hasło i jego potwierdzenie są niezgodne.")]
+        [Compare("Password", ErrorMessage = "Password and confirmation are not valid.")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Field name is required.")]
         public string Name { get; set; }
 
-        [Required]
         [Display(Name = "Second Name")]
         public string SecondName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Field alias is required.")]
         public string Alias { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Field desription is required.")]
         [StringLength(30)]
         public string Description { get; set; }
     }
@@ -103,14 +102,14 @@ namespace CritProject.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "{0} musi zawierać co najmniej następującą liczbę znaków: {2}.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "{0} must have at least chars: {2}.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "Hasło i jego potwierdzenie są niezgodne.")]
+        [Compare("Password", ErrorMessage = "Password and confirmation are not valid.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

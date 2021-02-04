@@ -20,9 +20,17 @@ namespace CritProject.Controllers
         private CritContext db = new CritContext();
 
         // GET: ReviewModels1
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            var reviews = db.Reviews.Include(r => r.Critic).Include(r => r.Game);
+
+            var reviews = from g in db.Reviews select g;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                reviews = reviews.Where(s => s.Game.Title.Contains(searchString)).Include(r => r.Critic).Include(r => r.Game);
+            }
+
+            //reviews = db.Reviews.Include(r => r.Critic).Include(r => r.Game);
             return View(reviews.ToList());
         }
 
